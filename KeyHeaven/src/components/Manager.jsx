@@ -1,10 +1,23 @@
 import React from 'react'
+import { useRef } from 'react';
 
 const Manager = () => {
+    const ref=useRef();
+
+    const showpassword = () => {
+        // console.log(ref.current.src)
+        // ref.current.src = "/hide.png";
+        if(ref.current.src.includes("/hide.png")){
+            ref.current.src="/view.png";
+        }
+        else{
+            ref.current.src="/hide.png";
+        }
+    }
     return (
         <>
-            <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"></div></div>
-            <div className=" w-4/5 mx-auto my-2 ">
+            <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"></div></div>
+            <div className=" w-4/5 mx-auto my-2 flex text-center content-center flex-col">
                 <div className='font-bold text-4xl'>
                     <span className='text-green-600'>&lt;</span>
                     Key
@@ -13,11 +26,24 @@ const Manager = () => {
                 </div>
                 <h1 className='font-bold text-lg text-green-900'>Your own Password Manager</h1>
                 <div className='flex flex-col p-2 gap-4'>
-                    <input type="text" className='border border-black  rounded-full w-full p-4 py-0' />
-                    <div className='flex gap-2'>
-                        <input type="text" className='border border-black w-full rounded-2xl' />
-                        <input type="text" className='border border-black w-full rounded-2xl' />
+                    <input placeholder="Enter Website Name" type="text" className='border border-black  rounded-full w-full p-4 py-[3px]' />
+                    <div className='flex gap-4'>
+                        <input placeholder="Enter Username" type="text" className='border p-4 border-black w-full rounded-2xl py-[3px]' />
+                        <div className="relative">
+                            <input placeholder="Enter Password" type="text" className='border border-black w-full rounded-2xl  p-4 py-[3px]'/>
+                            <span className="absolute right-0 top-1 cursor-pointer p-5" onClick={showpassword}>
+                                <img ref={ref} src="/view.png" alt="none" /></span>
+                        </div>
                     </div>
+                </div>
+                <div className='flex justify-center'>
+                <button className='gap-1 border border-black p-2 rounded-full bg-green-500 w-fit flex justify-center items-center hover:bg-green-600 font-bold'>
+                <lord-icon
+                        src="https://cdn.lordicon.com/jgnvfzqg.json"
+                        trigger="hover">
+                </lord-icon> 
+                Add Password
+                </button>
                 </div>
             </div>
         </>

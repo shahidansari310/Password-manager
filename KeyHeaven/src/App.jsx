@@ -1,4 +1,5 @@
 import './App.css'
+import Manager from "./components/Manager"
 import Navbar from "./components/Navbar"
 
 function App() {
@@ -6,9 +7,7 @@ function App() {
   return (
     <>
     <Navbar/>
-      <div>
-        My Ui
-      </div>
+      <Manager/>
     </>
   )
 }

@@ -3,15 +3,18 @@ import { useRef } from 'react';
 
 const Manager = () => {
     const ref=useRef();
+    const refa=useRef();
 
     const showpassword = () => {
         // console.log(ref.current.src)
-        // ref.current.src = "/hide.png";
-        if(ref.current.src.includes("/hide.png")){
-            ref.current.src="/view.png";
+        // ref.current.src = "/view.png";
+        if(ref.current.src.includes("/view.png")){
+            ref.current.src="/hide.png";
+            refa.current.type="text";
         }
         else{
-            ref.current.src="/hide.png";
+            ref.current.src="/view.png";
+            refa.current.type="password";
         }
     }
     return (
@@ -26,13 +29,13 @@ const Manager = () => {
                 </div>
                 <h1 className='font-bold text-lg text-green-900'>Your own Password Manager</h1>
                 <div className='flex flex-col p-2 gap-4'>
-                    <input placeholder="Enter Website Name" type="text" className='border border-black  rounded-full w-full p-4 py-[3px]' />
+                    <input placeholder="Enter Website Name" type="url" className='border border-black  rounded-full w-full p-4 py-[3px]' />
                     <div className='flex gap-4'>
                         <input placeholder="Enter Username" type="text" className='border p-4 border-black w-full rounded-2xl py-[3px]' />
                         <div className="relative">
-                            <input placeholder="Enter Password" type="text" className='border border-black w-full rounded-2xl  p-4 py-[3px]'/>
-                            <span className="absolute right-0 top-1 cursor-pointer p-5" onClick={showpassword}>
-                                <img ref={ref} src="/view.png" alt="none" /></span>
+                            <input ref={refa} placeholder="Enter Password" type="password" className='border border-black w-full rounded-2xl  p-4 py-[3px]'/>
+                            <span className="absolute right-1 top-2 cursor-pointer " onClick={showpassword}>
+                                <img ref={ref} src="/hide.png" alt="none" className='h-[20px]' /></span>
                         </div>
                     </div>
                 </div>

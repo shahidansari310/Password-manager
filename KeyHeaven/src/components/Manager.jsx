@@ -56,24 +56,24 @@ const Manager = () => {
                     <span className='text-green-600'>/&gt;</span>
                 </div>
                 <h1 className='font-bold text-lg text-green-900'>Your own Password Manager</h1>
-                <div className='flex flex-col p-2 gap-4'>
+                <div className='flex flex-col p-2 gap-4 '>
                     <input value={form.site} onChange={handleChange} name="site" placeholder="Enter Website Name" type="url" className=' border border-black  rounded-full w-full p-4 py-[3px]' />
                     <div className='flex gap-4'>
                         <input value={form.username} onChange={handleChange} name="username" placeholder="Enter Username" type="text" className='border p-4 border-black w-full rounded-2xl py-[3px]' />
                         <div className="relative">
-                            <input ref={refa} value={form.password} onChange={handleChange} name="password" placeholder="Enter Password" type="password" className='border border-black w-full rounded-2xl  p-4 py-[3px]' />
+                            <input ref={refa} value={form.password} onChange={handleChange} name="password" placeholder="Enter Password" type="password" className='border p-4 border-black w-full rounded-2xl py-[4px]' />
                             <span className="absolute right-1 top-2 cursor-pointer " onClick={showpassword}>
                                 <img ref={ref} src="/hide.png" alt="none" className='h-[20px]' /></span>
                         </div>
                     </div>
                 </div>
                 <div className='flex justify-center'>
-                    <button onClick={savepassowrd} className='gap-1 border border-black p-2 rounded-full bg-green-500 w-fit flex justify-center items-center hover:bg-green-600 font-bold'>
+                    <button onClick={savepassowrd} className=' border border-black p-1 rounded-full bg-green-500 w-fit flex justify-center items-center hover:bg-green-600 font-bold'>
                         <lord-icon
                             src="https://cdn.lordicon.com/jgnvfzqg.json"
-                            trigger="hover">
-                        </lord-icon>
-                        Add Password
+                            trigger="hover"
+                            className="h-5">
+                        </lord-icon>Add Password
                     </button>
                 </div>
                 <div className="passwordtable">

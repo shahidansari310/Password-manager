@@ -16,8 +16,6 @@ const Manager = () => {
     }, [])
 
     const showpassword = () => {
-        // console.log(ref.current.src)
-        // ref.current.src = "/view.png";
         if (ref.current.src.includes("/view.png")) {
             ref.current.src = "/hide.png";
             refa.current.type = "text";
@@ -44,17 +42,24 @@ const Manager = () => {
         setform({ ...form, [e.target.name]: e.target.value })
     }
 
-
     const copyele = (e) => {
         navigator.clipboard.writeText(e);
         alert("Copied to Clipboard");
+    }
+
+    const deletel = (e) => {
+
+    }
+
+    const editl = (e) => {
+
     }
 
 
     return (
         <>
             <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"></div></div>
-            <div className=" w-4/5 mx-auto my-2 flex text-center content-center flex-col">
+            <div className=" w-9/10 mx-auto my-2 flex text-center content-center flex-col">
                 <div className='font-bold text-4xl'>
                     <span className='text-green-600'>&lt;</span>
                     Key
@@ -64,11 +69,11 @@ const Manager = () => {
                 <h1 className='font-bold text-lg text-green-900'>Your own Password Manager</h1>
                 <div className='flex flex-col p-2 gap-4 '>
                     <input value={form.site} onChange={handleChange} name="site" placeholder="Enter Website Name" type="url" className=' border border-black  rounded-full w-full p-4 py-[3px]' />
-                    <div className='flex gap-4'>
+                    <div className='flex flex flex-col md:flex-row w-full  gap-4'>
                         <input value={form.username} onChange={handleChange} name="username" placeholder="Enter Username" type="text" className='border p-4 border-black w-full rounded-2xl py-[3px]' />
                         <div className="relative">
-                            <input ref={refa} value={form.password} onChange={handleChange} name="password" placeholder="Enter Password" type="password" className='border p-4 border-black w-full rounded-2xl py-[4px]' />
-                            <span className="absolute right-1 top-2 cursor-pointer " onClick={showpassword}>
+                            <input ref={refa} value={form.password} onChange={handleChange} name="password" placeholder="Enter Password" type="password" className='border p-5 border-black w-full rounded-2xl py-[4px]' />
+                            <span className="absolute right-[10px] top-2 cursor-pointer " onClick={showpassword}>
                                 <img ref={ref} src="/hide.png" alt="none" className='h-[20px]' /></span>
                         </div>
                     </div>
@@ -102,7 +107,7 @@ const Manager = () => {
                                         <td className="py-2 border-white whitespace-nowrap">
                                             <div className="flex items-center  justify-center gap-2">
                                                 {item.username}
-                                                <button onClick={()=>{copyele(item.username)}}>
+                                                <button  className="cursor-pointer" onClick={() => { copyele(item.username) }}>
                                                     <img src="/copy.gif" alt="Copy" className="h-6" />
                                                 </button>
                                             </div>
@@ -110,13 +115,13 @@ const Manager = () => {
                                         <td className="py-2 border-white whitespace-nowrap">
                                             <div className="flex justify-center items-center gap-2">
                                                 {item.password}
-                                                <button onClick={()=>{copyele(item.password)}}>
+                                                <button  className="cursor-pointer" onClick={() => { copyele(item.password) }}>
                                                     <img src="/copy.gif" alt="Copy" className="h-6" />
                                                 </button>
                                             </div>
                                         </td>
 
-                                        <td className=''><button><img src="/edit.gif" alt="" className='h-6' /></button><button><img src="/trash-bin.gif" alt="" className='h-6' /></button></td>
+                                        <td className=''><button  className="cursor-pointer" onClick={editl}><img src="/edit.gif" alt="" className='h-6' /></button><button className="cursor-pointer" onClick={deletel}><img src="/trash-bin.gif" alt="" className='h-6' /></button></td>
                                     </tr>
                                 </tbody>
                             })}

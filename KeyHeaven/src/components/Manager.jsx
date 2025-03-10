@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRef, useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Manager = () => {
     const ref = useRef();
@@ -43,8 +44,17 @@ const Manager = () => {
     }
 
     const copyele = (e) => {
+        toast.success('Copied to Clipboard!', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light"
+
+        });
         navigator.clipboard.writeText(e);
-        alert("Copied to Clipboard");
     }
 
     const deletel = (e) => {
@@ -58,6 +68,17 @@ const Manager = () => {
 
     return (
         <>
+
+
+            <ToastContainer
+                position="top-right"
+                autoClose={1000} 
+                hideProgressBar={true}
+                closeOnClick={true}
+                pauseOnHover={false}
+                draggable={false}
+                theme="light"
+            />
             <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"></div></div>
             <div className=" w-9/10 mx-auto my-2 flex text-center content-center flex-col">
                 <div className='font-bold text-4xl'>
@@ -107,7 +128,7 @@ const Manager = () => {
                                         <td className="py-2 border-white whitespace-nowrap">
                                             <div className="flex items-center  justify-center gap-2">
                                                 {item.username}
-                                                <button  className="cursor-pointer" onClick={() => { copyele(item.username) }}>
+                                                <button className="cursor-pointer" onClick={() => { copyele(item.username) }}>
                                                     <img src="/copy.gif" alt="Copy" className="h-6" />
                                                 </button>
                                             </div>
@@ -115,13 +136,13 @@ const Manager = () => {
                                         <td className="py-2 border-white whitespace-nowrap">
                                             <div className="flex justify-center items-center gap-2">
                                                 {item.password}
-                                                <button  className="cursor-pointer" onClick={() => { copyele(item.password) }}>
+                                                <button className="cursor-pointer" onClick={() => { copyele(item.password) }}>
                                                     <img src="/copy.gif" alt="Copy" className="h-6" />
                                                 </button>
                                             </div>
                                         </td>
 
-                                        <td className=''><button  className="cursor-pointer" onClick={editl}><img src="/edit.gif" alt="" className='h-6' /></button><button className="cursor-pointer" onClick={deletel}><img src="/trash-bin.gif" alt="" className='h-6' /></button></td>
+                                        <td className=''><button className="cursor-pointer" onClick={editl}><img src="/edit.gif" alt="" className='h-6' /></button><button className="cursor-pointer" onClick={deletel}><img src="/trash-bin.gif" alt="" className='h-6' /></button></td>
                                     </tr>
                                 </tbody>
                             })}

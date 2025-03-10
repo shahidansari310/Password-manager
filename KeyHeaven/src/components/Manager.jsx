@@ -29,20 +29,21 @@ const Manager = () => {
     }
 
     const savepassowrd = (e) => {
+        
+        e.preventDefault();
+        if (!form.site || !form.username || !form.password) {
+            alert("All fields are required!");
+            return;
+        }
         toast.success('Password Saved successfully', {
             position: "top-right",
-            autoClose: 1000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
             theme: "light"
         });
-        e.preventDefault();
-        if (!form.site || !form.username || !form.password) {
-            alert("All fields are required!");
-            return;
-        }
         console.log(form);
         setPasswordarray([...Passwordarray, { ...form, id: uuidv4() }]);
         localStorage.setItem("passwords", JSON.stringify([...Passwordarray, { ...form, id: uuidv4() }]));
@@ -56,7 +57,7 @@ const Manager = () => {
     const copyele = (e) => {
         toast.success('Copied to Clipboard!', {
             position: "top-right",
-            autoClose: 1000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
@@ -69,19 +70,19 @@ const Manager = () => {
 
     const deletel = (id) => {
         // console.log("deleting id", id);
-        toast.success('Password Deleted successfully', {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            theme: "light"
-        });
         let c=confirm("Are you sure you want to delete this password?");
         if(c){
             setPasswordarray([...Passwordarray.filter((item) => item.id !== id)]);
             localStorage.setItem("passwords", JSON.stringify([...Passwordarray.filter((item) => item.id !== id)]));
+            toast.success('Password Deleted successfully', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "light"
+            });
         }
     }
 
@@ -95,14 +96,13 @@ const Manager = () => {
         <>
             <ToastContainer
                 position="top-right"
-                autoClose={1000}
+                autoClose={3000}
                 hideProgressBar={false}
                 closeOnClick={true}
                 pauseOnHover={false}
                 draggable={false}
                 theme="light"
             />
-            <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"><div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_100%_200px,#d5c5ff,transparent)]"></div></div>
             <div className=" w-9/10 mx-auto my-2 flex text-center content-center flex-col">
                 <div className='font-bold text-4xl'>
                     <span className='text-green-600'>&lt;</span>
@@ -123,7 +123,7 @@ const Manager = () => {
                     </div>
                 </div>
                 <div className='flex justify-center'>
-                    <button onClick={savepassowrd} className=' border border-black p-1 rounded-full bg-green-500 w-fit flex justify-center items-center hover:bg-green-600 font-bold'>
+                    <button onClick={savepassowrd} className=' border border-black p-2 rounded-full bg-green-500 w-fit flex justify-center items-center hover:bg-green-600 font-bold'>
                         <lord-icon
                             src="https://cdn.lordicon.com/jgnvfzqg.json"
                             trigger="hover"

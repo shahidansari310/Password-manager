@@ -2,7 +2,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between bg-purple-500 p-2 px-7">
+    <nav className="flex justify-between p-2 px-7 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600">
       <div className=' flex font-bold text-xl'>
         <img src="/login.gif" className="h-8"
         alt="" /> <span className='text-green-900'>&lt;</span>Key<span className='text-green-900'>Heaven/&gt;</span>

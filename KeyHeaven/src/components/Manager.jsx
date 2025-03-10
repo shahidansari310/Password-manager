@@ -29,6 +29,15 @@ const Manager = () => {
     }
 
     const savepassowrd = (e) => {
+        toast.success('Password Saved successfully', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light"
+        });
         e.preventDefault();
         if (!form.site || !form.username || !form.password) {
             alert("All fields are required!");
@@ -60,6 +69,15 @@ const Manager = () => {
 
     const deletel = (id) => {
         // console.log("deleting id", id);
+        toast.success('Password Deleted successfully', {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "light"
+        });
         let c=confirm("Are you sure you want to delete this password?");
         if(c){
             setPasswordarray([...Passwordarray.filter((item) => item.id !== id)]);
@@ -127,7 +145,7 @@ const Manager = () => {
                                 </tr>
                             </thead>
                             {Passwordarray.map((item) => {
-                                return <tbody className='bg-green-100 shadow-2xl'>
+                                return <tbody key={item.id} className='bg-green-100 shadow-2xl'>
                                     <tr>
                                         <td className='py-2 border-white '><a href={item.site}>{item.site}</a></td>
                                         <td className="py-2 border-white whitespace-nowrap">

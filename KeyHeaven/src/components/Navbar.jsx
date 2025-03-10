@@ -3,9 +3,10 @@ import React from 'react'
 const Navbar = () => {
   return (
     <nav className="flex justify-between bg-purple-500 p-2 px-7">
-      <div className='font-bold text-xl '>
-        &lt;KeyHeaven/&gt;
-      </div>
+      <div className=' flex font-bold text-xl'>
+        <img src="/login.gif" className="h-8"
+        alt="" /> <span className='text-green-900'>&lt;</span>Key<span className='text-green-900'>Heaven/&gt;</span>
+      </div>    
       <ul>
         <li className="flex ">
           <a href="https://github.com/shahidansari310"><img src="/git.png" alt="" className=' mx-1 h-6 border rounded-full' /></a>

@@ -8,7 +8,7 @@ const Navbar = () => {
             </div>
       <ul>
         <li className="flex gap-4">
-            <a href="/"><img src="..\..\public\home.svg" alt="Home Icon" className="w-6 h-6"/>
+            <a href="/"><img src="/home.svg" alt="Home Icon" className="w-6 h-6"/>
             </a>
             <a href="/">About</a>
             <a href="/">Contact</a>

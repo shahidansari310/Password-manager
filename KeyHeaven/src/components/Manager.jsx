@@ -28,8 +28,8 @@ const Manager = () => {
         }
     }
 
-    const savepassowrd = (e) =>{
-        e.preventDefault(); 
+    const savepassowrd = (e) => {
+        e.preventDefault();
         if (!form.site || !form.username || !form.password) {
             alert("All fields are required!");
             return;
@@ -42,6 +42,12 @@ const Manager = () => {
 
     const handleChange = (e) => {
         setform({ ...form, [e.target.name]: e.target.value })
+    }
+
+
+    const copyele = (e) => {
+        navigator.clipboard.writeText(e);
+        alert("Copied to Clipboard");
     }
 
 
@@ -79,25 +85,42 @@ const Manager = () => {
                 <div className="passwordtable">
                     <h2 className='p-2 text-2xl mt-5 font-serif font-bold'>Your saved Passwords</h2>
                     {Passwordarray.length === 0 && <h1 className='text-2xl text-center text-green-800'>No Passwords Saved</h1>}
-                    {Passwordarray.length !=0 &&
-                    <table className="table-auto border-collapse border w-full">
-                        <thead className='bg-green-700 text-white'>
-                            <tr>
-                                <th className='py-2'>Website URl</th>
-                                <th className='py-2'>Username</th>
-                                <th className='py-2'>Password</th>
-                            </tr>
-                        </thead>
-                        {Passwordarray.map((item)=>{
-                            return <tbody className='bg-green-100'>
-                            <tr>
-                                <td className='py-2 '><a href="item.site">{item.site}</a></td>
-                                <td className='py-2'>{item.username}</td>
-                                <td className='py-2'>{item.password}</td>
-                            </tr>
-                        </tbody>
-                        })}
-                    </table>}
+                    {Passwordarray.length != 0 &&
+                        <table className="table-auto border-collapse border w-full border-white">
+                            <thead className='bg-green-700 text-white border-white'>
+                                <tr>
+                                    <th className='py-2 border-white'>Website URl</th>
+                                    <th className='py-2 border-white'>Username</th>
+                                    <th className='py-2 border-white'>Password</th>
+                                    <th className='py-2 border-white'>Action</th>
+                                </tr>
+                            </thead>
+                            {Passwordarray.map((item) => {
+                                return <tbody className='bg-green-100'>
+                                    <tr>
+                                        <td className='py-2 border-white '><a href={item.site}>{item.site}</a></td>
+                                        <td className="py-2 border-white whitespace-nowrap">
+                                            <div className="flex items-center  justify-center gap-2">
+                                                {item.username}
+                                                <button onClick={()=>{copyele(item.username)}}>
+                                                    <img src="/copy.gif" alt="Copy" className="h-6" />
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td className="py-2 border-white whitespace-nowrap">
+                                            <div className="flex justify-center items-center gap-2">
+                                                {item.password}
+                                                <button onClick={()=>{copyele(item.password)}}>
+                                                    <img src="/copy.gif" alt="Copy" className="h-6" />
+                                                </button>
+                                            </div>
+                                        </td>
+
+                                        <td className=''><button><img src="/edit.gif" alt="" className='h-6' /></button><button><img src="/trash-bin.gif" alt="" className='h-6' /></button></td>
+                                    </tr>
+                                </tbody>
+                            })}
+                        </table>}
                 </div>
             </div>
         </>

@@ -35,8 +35,8 @@ const Manager = () => {
             return;
         }
         console.log(form);
-        setPasswordarray([...Passwordarray, {...form,id:uuidv4()}]);
-        localStorage.setItem("passwords", JSON.stringify([...Passwordarray, {...form,id:uuidv4()}]));
+        setPasswordarray([...Passwordarray, { ...form, id: uuidv4() }]);
+        localStorage.setItem("passwords", JSON.stringify([...Passwordarray, { ...form, id: uuidv4() }]));
         setform({ site: "", username: "", password: "" });
     }
 
@@ -59,17 +59,17 @@ const Manager = () => {
     }
 
     const deletel = (id) => {
-       console.log("deleting id",id);
-       setPasswordarray([...Passwordarray.filter((item)=>item.id!==id)]);
-       localStorage.setItem("passwords", JSON.stringify([...Passwordarray.filter((item)=>item.id!==id)]));
+        // console.log("deleting id", id);
+        let c=confirm("Are you sure you want to delete this password?");
+        if(c){
+            setPasswordarray([...Passwordarray.filter((item) => item.id !== id)]);
+            localStorage.setItem("passwords", JSON.stringify([...Passwordarray.filter((item) => item.id !== id)]));
+        }
     }
 
     const editl = (id) => {
-        setform(Passwordarray.filter((item)=>item.id===id)[0]);
-
-        setPasswordarray([...Passwordarray.filter((item)=>item.id!==id)]);
-        // localStorage.setItem("passwords", JSON.stringify([...Passwordarray, form]));
-        // setform({ site: "", username: "", password: "" });
+        setform(Passwordarray.filter((item) => item.id === id)[0]);
+        setPasswordarray([...Passwordarray.filter((item) => item.id !== id)]);
     }
 
 
@@ -77,7 +77,7 @@ const Manager = () => {
         <>
             <ToastContainer
                 position="top-right"
-                autoClose={1000} 
+                autoClose={1000}
                 hideProgressBar={false}
                 closeOnClick={true}
                 pauseOnHover={false}

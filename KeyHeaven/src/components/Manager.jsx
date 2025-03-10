@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRef, useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
 
 const Manager = () => {
@@ -34,8 +35,8 @@ const Manager = () => {
             return;
         }
         console.log(form);
-        setPasswordarray([...Passwordarray, form]);
-        localStorage.setItem("passwords", JSON.stringify([...Passwordarray, form]));
+        setPasswordarray([...Passwordarray, {...form,id:uuidv4()}]);
+        localStorage.setItem("passwords", JSON.stringify([...Passwordarray, {...form,id:uuidv4()}]));
         setform({ site: "", username: "", password: "" });
     }
 
@@ -47,7 +48,7 @@ const Manager = () => {
         toast.success('Copied to Clipboard!', {
             position: "top-right",
             autoClose: 1000,
-            hideProgressBar: true,
+            hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
             draggable: false,
@@ -57,23 +58,27 @@ const Manager = () => {
         navigator.clipboard.writeText(e);
     }
 
-    const deletel = (e) => {
-
+    const deletel = (id) => {
+       console.log("deleting id",id);
+       setPasswordarray([...Passwordarray.filter((item)=>item.id!==id)]);
+       localStorage.setItem("passwords", JSON.stringify([...Passwordarray.filter((item)=>item.id!==id)]));
     }
 
-    const editl = (e) => {
+    const editl = (id) => {
+        setform(Passwordarray.filter((item)=>item.id===id)[0]);
 
+        setPasswordarray([...Passwordarray.filter((item)=>item.id!==id)]);
+        // localStorage.setItem("passwords", JSON.stringify([...Passwordarray, form]));
+        // setform({ site: "", username: "", password: "" });
     }
 
 
     return (
         <>
-
-
             <ToastContainer
                 position="top-right"
                 autoClose={1000} 
-                hideProgressBar={true}
+                hideProgressBar={false}
                 closeOnClick={true}
                 pauseOnHover={false}
                 draggable={false}
@@ -105,7 +110,7 @@ const Manager = () => {
                             src="https://cdn.lordicon.com/jgnvfzqg.json"
                             trigger="hover"
                             className="h-5">
-                        </lord-icon>Add Password
+                        </lord-icon>Save
                     </button>
                 </div>
                 <div className="passwordtable">
@@ -142,7 +147,7 @@ const Manager = () => {
                                             </div>
                                         </td>
 
-                                        <td className=''><button className="cursor-pointer" onClick={editl}><img src="/edit.gif" alt="" className='h-6' /></button><button className="cursor-pointer" onClick={deletel}><img src="/trash-bin.gif" alt="" className='h-6' /></button></td>
+                                        <td className=''><button className="cursor-pointer" onClick={() => { editl(item.id) }}><img src="/edit.gif" alt="" className='h-6' /></button><button className="cursor-pointer" onClick={() => { deletel(item.id) }}><img src="/trash-bin.gif" alt="" className='h-6' /></button></td>
                                     </tr>
                                 </tbody>
                             })}

@@ -2,8 +2,8 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-between bg-purple-500 p-2">
-      <div className='font-bold text-xl'>
+    <nav className="flex justify-between bg-purple-500 p-2 px-7">
+      <div className='font-bold text-xl '>
         &lt;KeyHeaven/&gt;
       </div>
       <ul>
